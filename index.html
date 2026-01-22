@@ -833,6 +833,8 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
+      user-select: none;
     }
     
     @media (min-width: 1280px){
@@ -864,6 +866,29 @@
       border-color: var(--accent);
     }
     
+    .pack:active{
+      transform: translateY(-4px) scale(0.98);
+    }
+    
+    /* Badge de desconto */
+    .pack .discount-badge{
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      animation: pulse 2s ease-in-out infinite;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+      letter-spacing: 0.02em;
+    }
+    
     .pack h3{ 
       margin: 0; 
       font-size: 16px;
@@ -887,6 +912,120 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      position: relative;
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    
+    .pack .price-wrapper{
+      margin-top: 14px;
+    }
+    
+    .pack .original-price{
+      font-size: 15px;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      margin-bottom: 8px;
+      font-weight: 500;
+      opacity: 0.7;
+    }
+    
+    .pack .discount-price-line{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .pack.discount-applied .range{
+      background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 22px;
+      padding: 0;
+    }
+    
+    .pack .savings{
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.02em;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    }
+    
+    .pack.discount-applied .discount-badge{
+      background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+      animation: none;
+    }
+    
+    #simulateBtn:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+    }
+    
+    #simulateBtn:active {
+      transform: translateY(0);
+    }
+    
+    .simulation-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    
+    .simulation-card {
+      background: white;
+      border-radius: 10px;
+      padding: 14px;
+      border: 2px solid rgba(59, 130, 246, 0.2);
+    }
+    
+    .simulation-title {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 14px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .simulation-values {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13px;
+    }
+    
+    .simulation-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+    }
+    
+    .simulation-row.total {
+      margin-top: 6px;
+      padding-top: 10px;
+      border-top: 2px solid rgba(59, 130, 246, 0.2);
+      font-weight: 700;
+      color: var(--accent);
+    }
+    
+    @media (min-width: 640px) {
+      .simulation-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
     
     .pack ul{ 
@@ -990,11 +1129,8 @@
       <div class="topbar-inner">
         <div class="brand">
           <div class="logo" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" width="28" height="28">
-              <path d="M6 14c3.2-4.8 8.8-4.8 12 0" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-              <path d="M8 16c2.1-3.1 5.9-3.1 8 0" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-              <circle cx="12" cy="19" r="1.5" fill="white"/>
-              <path d="M4 9c4.6-6.9 11.4-6.9 16 0" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity=".8"/>
+            <svg viewBox="0 0 20 20" fill="currentColor" width="28" height="28">
+              <path d="M10 14a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM6.252 8.645a7 7 0 0 1 7.496 0 .5.5 0 1 0 .504-.864 8 8 0 0 0-8.504 0 .5.5 0 1 0 .504.864Zm-2.252-2.31a10.5 10.5 0 0 1 12 0 .5.5 0 1 0 .5-.866 11.5 11.5 0 0 0-13 0 .5.5 0 0 0 .5.865Zm4.5 4.62a4.5 4.5 0 0 1 3 0 .5.5 0 0 0 .5-.866 5.5 5.5 0 0 0-4 0 .5.5 0 0 0 .5.865Z"/>
             </svg>
           </div>
           <div style="min-width:0">
@@ -1211,7 +1347,18 @@
                       </div>
                       <div style="display:flex; align-items:start; gap:10px;">
                         <span style="color:var(--success); font-size:18px;">✓</span>
-                        <span><strong>Opcional - Pagamento flexível:</strong> 40% na aprovação + 30% na entrega dos materiais + 30% no go-live</span>
+                        <div style="flex: 1;">
+                          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+                            <span><strong>Opcional - Pagamento flexível:</strong> 40% na aprovação + 30% na entrega dos materiais + 30% no go-live</span>
+                            <button id="simulateBtn" onclick="toggleSimulation()" style="padding:6px 14px; border-radius:8px; border:2px solid var(--accent); background:transparent; color:var(--accent); font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s; display:inline-flex; align-items:center; gap:6px;">
+                              <span style="font-size:16px;">📊</span>
+                              Simular
+                            </button>
+                          </div>
+                          <div id="simulationArea" style="display:none; margin-top:16px; padding:16px; border-radius:12px; background:linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.02) 100%); border:2px solid rgba(59, 130, 246, 0.3);">
+                            <!-- Conteúdo será preenchido dinamicamente -->
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1222,7 +1369,7 @@
                     <div style="font-weight:700; margin-bottom:10px; color:var(--text);">⚠️ Premissas e fora de escopo</div>
                     <div style="color:var(--text-muted); font-size:13px; line-height:1.7">
                       Inclui levantamento de materiais, arquitetura lógica e configuração. Não inclui cabeamento horizontal,
-                      infraestrutura civil (eletrocalhas/canaletas), certificação de rede, nem mão de obra de passagem/crimpagem.
+                      infraestrutura civil (eletrocalhas/canaletas), fixação de rack, nem mão de obra de passagem/crimpagem.
                       Valores de materiais são referenciais e devem ser atualizados no ato da compra/cotação.
                     </div>
                   </div>
@@ -1292,9 +1439,9 @@
           }
         ],
         servico: [
-          { nome: "Essencial", faixa: "R$ 2.600", bullets: ["Configuração R3005G (WAN1/WAN2 + failover)", "SSID Guest + Staff, regras básicas", "Checklist e handover"] },
-          { nome: "Completo", faixa: "R$ 3.500", bullets: ["Tudo do Essencial", "Políticas de isolamento/limite de banda", "Documentação (mapa lógico + inventário)"] },
-          { nome: "Recomendado", faixa: "R$ 4.130", bullets: ["Tudo do Completo", "Pós go-live assistido", "Hardening e backup de configurações"] },
+          { nome: "Essencial", faixa: "R$ 2.730", original: "R$ 2.600", bullets: ["Configuração R3005G (WAN1/WAN2 + failover)", "SSID Guest + Staff, regras básicas", "Checklist e handover"] },
+          { nome: "Completo", faixa: "R$ 3.670", original: "R$ 3.500", bullets: ["Tudo do Essencial", "Políticas de isolamento/limite de banda", "Documentação (mapa lógico + inventário)"] },
+          { nome: "Recomendado", faixa: "R$ 4.340", original: "R$ 4.130", bullets: ["Tudo do Completo", "Pós go-live assistido", "Hardening e backup de configurações"] },
         ]
       },
 
@@ -1340,9 +1487,9 @@
           }
         ],
         servico: [
-          { nome: "Essencial", faixa: "R$ 3.500", bullets: ["Configuração R3005G + fail-over WAN + 4 APs", "SSID Guest + Staff", "Checklist e handover"] },
-          { nome: "Completo", faixa: "R$ 4.400", bullets: ["Tudo do Essencial", "VLANs 10/11/12 + rate-limit Guest + AC-S roaming", "Doc. completa (mapa + inventário + senhas)"] },
-          { nome: "Recomendado", faixa: "R$ 5.300", bullets: ["Tudo do Completo", "QoS TEF/PDV + monitoramento 7 dias", "Pós go-live assistido"] },
+          { nome: "Essencial", faixa: "R$ 3.670", original: "R$ 3.500", bullets: ["Configuração R3005G + fail-over WAN + 4 APs", "SSID Guest + Staff", "Checklist e handover"] },
+          { nome: "Completo", faixa: "R$ 4.620", original: "R$ 4.400", bullets: ["Tudo do Essencial", "VLANs 10/11/12 + rate-limit Guest + AC-S roaming", "Doc. completa (mapa + inventário + senhas)"] },
+          { nome: "Recomendado", faixa: "R$ 5.560", original: "R$ 5.300", bullets: ["Tudo do Completo", "QoS TEF/PDV + monitoramento 7 dias", "Pós go-live assistido"] },
         ]
       },
 
@@ -1388,9 +1535,9 @@
           }
         ],
         servico: [
-          { nome: "Essencial", faixa: "R$ 4.400", bullets: ["Config. router + PoE + 4 APs Wi-Fi 6", "SSIDs + fail-over", "Checklist e handover"] },
-          { nome: "Completo", faixa: "R$ 5.300", bullets: ["Tudo do Essencial", "VLANs + roaming + QoS", "Documentação + inventário rack"] },
-          { nome: "Recomendado", faixa: "R$ 6.200", bullets: ["Tudo do Completo", "APs WPA3 + monitoramento 7 dias", "Pós go-live + treinamento in-loco"] },
+          { nome: "Essencial", faixa: "R$ 4.620", original: "R$ 4.400", bullets: ["Config. router + PoE + 4 APs Wi-Fi 6", "SSIDs + fail-over", "Checklist e handover"] },
+          { nome: "Completo", faixa: "R$ 5.560", original: "R$ 5.300", bullets: ["Tudo do Essencial", "VLANs + roaming + QoS", "Documentação + inventário rack"] },
+          { nome: "Recomendado", faixa: "R$ 6.510", original: "R$ 6.200", bullets: ["Tudo do Completo", "APs WPA3 + monitoramento 7 dias", "Pós go-live + treinamento in-loco"] },
         ]
       },
 
@@ -1398,16 +1545,16 @@
         code: "D",
         nome: "Recomendado",
         titulo: "Cenário D — Recomendado",
-        desc: "Core PoE gerenciável (VLAN/QoS) + Wi-Fi 5 + nobreak. Melhor gerenciamento.",
+        desc: "Core Gigabit + Wi-Fi 5 + nobreak. Equilíbrio entre custo e desempenho.",
         wifi: "Wi-Fi 5 (AP 1350 AC-S)",
-        topoMode: "SINGLE_POE_CORE_WITH_UPS",
-        totais: { materiais: 11455.00 },
+        topoMode: "SINGLE_CORE_WITH_UPS",
+        totais: { materiais: 6457.00 },
         categorias: [
           {
             nome: "Ativos • Roteamento e Switching",
             itens: [
               { nome: "Intelbras R3005G (dual WAN com failover)", qtd: 1, un: 655.00 },
-              { nome: "Intelbras S2328G-PA (24 portas Gigabit PoE gerenciável: VLAN/QoS)", qtd: 1, un: 4998.00 },
+              { nome: "Intelbras S1124G (24 portas Gigabit, não-PoE)", qtd: 1, un: 850.00 },
             ]
           },
           {
@@ -1436,9 +1583,9 @@
           }
         ],
         servico: [
-          { nome: "Essencial", faixa: "R$ 3.500", bullets: ["Config. completa R3005G + PoE + 4 APs AC-S", "SSIDs + VLANs + fail-over", "Checklist e handover"] },
-          { nome: "Completo", faixa: "R$ 4.400", bullets: ["Tudo do Essencial", "VLANs 10/11/12 + QoS + rate-limit + roaming AC-S", "Doc. completa + inventário rack"] },
-          { nome: "Recomendado", faixa: "R$ 5.300", bullets: ["Tudo do Completo", "Monitoramento 7 dias + ajustes finos", "Pós go-live assistido + treinamento"] },
+          { nome: "Essencial", faixa: "R$ 3.670", original: "R$ 3.500", bullets: ["Config. completa R3005G + PoE + 4 APs AC-S", "SSIDs + VLANs + fail-over", "Checklist e handover"] },
+          { nome: "Completo", faixa: "R$ 4.620", original: "R$ 4.400", bullets: ["Tudo do Essencial", "VLANs 10/11/12 + QoS + rate-limit + roaming AC-S", "Doc. completa + inventário rack"] },
+          { nome: "Recomendado", faixa: "R$ 5.560", original: "R$ 5.300", bullets: ["Tudo do Completo", "Monitoramento 7 dias + ajustes finos", "Pós go-live assistido + treinamento"] },
         ]
       }
     };
@@ -1450,6 +1597,9 @@
 
     // Estado dos itens toggleados por cenário
     const toggledItems = {};
+    
+    // Cenário atualmente ativo
+    let currentScenarioKey = 'D';
 
     function toast(msg){
       const t = byId("toast");
@@ -1537,18 +1687,8 @@
             // Recalcular e atualizar totais
             updateTotals(c, scenarioKey);
             
-            // Atualizar mapa de topologia se for item crítico
-            const isCriticalItem = it.nome.includes("Nobreak") || 
-                                   it.nome.includes("XNB") ||
-                                   it.nome.includes("S2328G-PA") ||
-                                   it.nome.includes("PoE") ||
-                                   it.nome.includes("AP 360") ||
-                                   it.nome.includes("AP 1350") ||
-                                   it.nome.includes("AP 3000");
-            
-            if (isCriticalItem) {
-              recalcTopologyMode(c, scenarioKey);
-            }
+            // SEMPRE atualizar mapa de topologia (detecção automática de componentes)
+            recalcTopologyMode(c, scenarioKey);
             
             toast(toggledItems[itemKey] ? "Item removido" : "Item adicionado");
           });
@@ -1586,54 +1726,320 @@
     }
     
     function recalcTopologyMode(c, scenarioKey){
-      // Verificar quais itens críticos estão ativos
-      let hasUps = false;
-      let hasPoeSwitch = false;
-      let activeAPs = [];
+      // Estado completo da topologia baseado em itens ativos
+      const topologyState = {
+        hasRouter: false,
+        hasCoreSwitch: false,
+        hasPoeSwitch: false,
+        hasUps: false,
+        hasPDU: false,
+        hasClamper: false,
+        aps: [],
+        apModels: {},
+        switches: [],
+        wanCount: 0
+      };
       
-      c.categorias.forEach((cat, catIdx) => {
+      c.categorias.forEach((cat) => {
         cat.itens.forEach((item, itemIdx) => {
           const itemKey = `${scenarioKey}-${cat.nome}-${itemIdx}`;
           const isActive = !toggledItems[itemKey];
           
-          if (isActive) {
-            // Detectar nobreak
-            if (item.nome.includes("Nobreak") || item.nome.includes("XNB 1200")) {
-              hasUps = true;
+          if (!isActive) return; // Item removido, pular
+          
+          const nome = item.nome.toLowerCase();
+          
+          // Detectar Roteador
+          if (nome.includes("r3005g") || nome.includes("dual wan")) {
+            topologyState.hasRouter = true;
+            topologyState.wanCount = 2; // R3005G tem dual WAN
+          }
+          
+          // Detectar Switches
+          if (nome.includes("s1124g")) {
+            topologyState.hasCoreSwitch = true;
+            topologyState.switches.push({ type: 'core', model: 'S1124G', poe: false });
+          }
+          if (nome.includes("s2328g-pa") || (nome.includes("s2328") && nome.includes("poe"))) {
+            topologyState.hasCoreSwitch = true;
+            topologyState.hasPoeSwitch = true;
+            topologyState.switches.push({ type: 'poe', model: 'S2328G-PA', poe: true });
+          }
+          
+          // Detectar APs - mais robusto
+          let apModel = null;
+          if (nome.includes("ap 360") || nome.includes("ap360")) {
+            apModel = "AP 360";
+          } else if (nome.includes("ap 1350") || nome.includes("1350 ac-s")) {
+            apModel = "AP 1350 AC-S";
+          } else if (nome.includes("ap 3000") || nome.includes("3000 ax")) {
+            apModel = "AP 3000 AX";
+          }
+          
+          if (apModel) {
+            for(let i = 0; i < item.qtd; i++) {
+              topologyState.aps.push({
+                model: apModel,
+                location: i < 3 ? `Salão ${i + 1}` : "Bar"
+              });
             }
-            // Detectar switch PoE
-            if (item.nome.includes("S2328G-PA") || item.nome.includes("PoE gerenciável")) {
-              hasPoeSwitch = true;
-            }
-            // Detectar APs
-            if (item.nome.includes("AP 360") || item.nome.includes("AP 1350") || item.nome.includes("AP 3000")) {
-              for(let i = 0; i < item.qtd; i++) {
-                activeAPs.push(item.nome);
-              }
-            }
+            topologyState.apModels[apModel] = (topologyState.apModels[apModel] || 0) + item.qtd;
+          }
+          
+          // Detectar Nobreak
+          if (nome.includes("nobreak") || nome.includes("xnb") || nome.includes("1200")) {
+            topologyState.hasUps = true;
+          }
+          
+          // Detectar PDU
+          if (nome.includes("pdu")) {
+            topologyState.hasPDU = true;
+          }
+          
+          // Detectar Clamper/DPS
+          if (nome.includes("clamper") || nome.includes("dps") || nome.includes("iclamper")) {
+            topologyState.hasClamper = true;
           }
         });
       });
       
-      // Determinar modo de topologia
-      let newMode;
-      if (hasPoeSwitch && hasUps) {
+      // Determinar modo de topologia baseado no estado
+      let newMode = "SINGLE_CORE_NO_UPS"; // default
+      
+      if (topologyState.hasPoeSwitch && topologyState.hasUps) {
         newMode = "SINGLE_POE_CORE_WITH_UPS";
-      } else if (hasPoeSwitch && !hasUps) {
+      } else if (topologyState.hasPoeSwitch && !topologyState.hasUps) {
         newMode = "SINGLE_POE_CORE_NO_UPS";
-      } else if (!hasPoeSwitch && hasUps) {
+      } else if (topologyState.hasCoreSwitch && topologyState.hasUps) {
         newMode = "SINGLE_CORE_WITH_UPS";
-      } else {
+      } else if (topologyState.hasCoreSwitch && !topologyState.hasUps) {
         newMode = "SINGLE_CORE_NO_UPS";
       }
       
-      // Atualizar topologia
-      setTopologyMode(newMode, c, activeAPs.length);
-      animateLines();
+      // Atualizar topologia com modelo e quantidade de APs
+      const apModel = Object.keys(topologyState.apModels)[0] || "AP";
       
-      // Atualizar KPI de APs
+      // Proteção contra erros - verificar se elementos SVG existem
+      try {
+        setTopologyModeAdvanced(newMode, topologyState);
+        animateLines();
+      } catch(error) {
+        console.warn("Erro ao atualizar topologia:", error);
+      }
+      
+      // Atualizar KPIs dinamicamente
+      updateKPIs(topologyState);
+      
+      // Atualizar label de energia
+      updateEnergyLabel(topologyState);
+    }
+    
+    function updateKPIs(state){
+      // KPI de APs
       const kpiWifiSubtext = document.querySelector('.kpi:has(#kpiWifi) .s');
-      if(kpiWifiSubtext) kpiWifiSubtext.textContent = `${activeAPs.length} APs`;
+      if(kpiWifiSubtext) {
+        const apCount = state.aps.length;
+        kpiWifiSubtext.textContent = apCount === 0 ? "Sem APs" : `${apCount} AP${apCount > 1 ? 's' : ''}`;
+      }
+      
+      // KPI de Roteamento
+      const kpiWanEl = byId("kpiWan");
+      if(kpiWanEl) {
+        kpiWanEl.textContent = state.hasRouter ? `${state.wanCount}x WAN` : "Sem WAN";
+      }
+    }
+    
+    function updateEnergyLabel(state){
+      const energyLabel = byId("energyLabel");
+      if(!energyLabel) return;
+      
+      const parts = [];
+      if(state.hasClamper) parts.push("iClamper");
+      if(state.hasPDU) parts.push("PDU");
+      if(state.hasUps) parts.push("Nobreak");
+      
+      energyLabel.textContent = parts.length > 0 ? parts.join(" + ") : "Sem proteção elétrica";
+    }
+    
+    function setTopologyModeAdvanced(mode, state){
+      const poeNode = byId("poeNode");
+      const upsNode = byId("upsNode");
+      const routerNode = document.querySelector('#router');
+      const coreNode = document.querySelector('#core');
+
+      const show = (id, on) => { 
+        const el = byId(id); 
+        if(el) el.style.display = on ? "" : "none"; 
+      };
+
+      const isDual = mode.includes("DUAL_SWITCH");
+      const hasUps = mode.includes("WITH_UPS");
+      
+      // Determinar se usa conexões PoE (quando tem switch PoE ativo)
+      const usePoEConnections = state.hasPoeSwitch;
+
+      // Mostrar/ocultar elementos base
+      if(poeNode) poeNode.style.display = isDual ? "" : "none";
+      if(upsNode) upsNode.style.display = hasUps ? "" : "none";
+      if(routerNode) routerNode.style.display = state.hasRouter ? "" : "none";
+      if(coreNode) coreNode.style.display = state.hasCoreSwitch ? "" : "none";
+
+      // Links PoE vs Direct
+      const poeLinks = ["lnCoreToPoe","lnPoeToAp1","lnPoeToAp2","lnPoeToAp3","lnPoeToAp4"];
+      const directLinks = ["lnCoreDirectToAp1","lnCoreDirectToAp2","lnCoreDirectToAp3","lnCoreDirectToAp4"];
+      
+      // Se tem switch PoE, usa links PoE do core diretamente aos APs
+      // Se não tem PoE, usa links diretos
+      poeLinks.forEach(id => {
+        // lnCoreToPoe só aparece em modo dual (não usado no single PoE)
+        if(id === "lnCoreToPoe") {
+          show(id, isDual);
+        } else {
+          // Links aos APs
+          show(id, usePoEConnections);
+        }
+      });
+      directLinks.forEach(id => show(id, !usePoEConnections));
+
+      // Linha de energia
+      show("pwUps", hasUps);
+      show("pwEnergy", state.hasClamper || state.hasPDU || state.hasUps);
+
+      // Labels do switch
+      const swCoreLabel1 = byId("swCoreLabel1");
+      const swCoreLabel2 = byId("swCoreLabel2");
+      
+      if(swCoreLabel1 && swCoreLabel2) {
+        if(state.hasPoeSwitch) {
+          swCoreLabel1.textContent = "Switch PoE Core";
+          swCoreLabel2.textContent = "24p Gigabit PoE";
+        } else if(state.hasCoreSwitch) {
+          swCoreLabel1.textContent = "Switch Core";
+          swCoreLabel2.textContent = "24p Gigabit";
+        } else {
+          swCoreLabel1.textContent = "Sem Switch";
+          swCoreLabel2.textContent = "";
+        }
+      }
+
+      // Configurar APs dinamicamente
+      const numAPs = state.aps.length;
+      const apModel = state.aps.length > 0 ? state.aps[0].model : "AP";
+      
+      // Elementos SVG dos APs
+      const apElements = [
+        { rect: document.querySelector('#aps rect:nth-of-type(1)'), text: byId("ap1"), directLink: 'lnCoreDirectToAp1', poeLink: 'lnPoeToAp1' },
+        { rect: document.querySelector('#aps rect:nth-of-type(2)'), text: byId("ap2"), directLink: 'lnCoreDirectToAp2', poeLink: 'lnPoeToAp2' },
+        { rect: document.querySelector('#aps rect:nth-of-type(3)'), text: byId("ap3"), directLink: 'lnCoreDirectToAp3', poeLink: 'lnPoeToAp3' },
+        { rect: document.querySelector('#aps rect:nth-of-type(4)'), text: byId("ap4"), directLink: 'lnCoreDirectToAp4', poeLink: 'lnPoeToAp4' }
+      ];
+      
+      apElements.forEach((ap, idx) => {
+        if(idx < numAPs && state.aps[idx]) {
+          // Mostrar AP
+          if(ap.rect) ap.rect.style.display = '';
+          if(ap.text) {
+            ap.text.style.display = '';
+            ap.text.textContent = `${state.aps[idx].model} • ${state.aps[idx].location}`;
+          }
+          // Mostrar conexão apropriada (PoE se tem switch PoE, direto se não)
+          show(ap.directLink, !usePoEConnections && state.hasCoreSwitch);
+          show(ap.poeLink, usePoEConnections && state.hasCoreSwitch);
+        } else {
+          // Ocultar AP
+          if(ap.rect) ap.rect.style.display = 'none';
+          if(ap.text) ap.text.style.display = 'none';
+          show(ap.directLink, false);
+          show(ap.poeLink, false);
+        }
+      });
+      
+      // Atualizar linhas WAN baseado em roteador ativo
+      show("lnWan1", state.hasRouter);
+      show("lnWan2", state.hasRouter);
+      show("lnRouterToCore", state.hasRouter && state.hasCoreSwitch);
+      
+      // Linhas para LAN e DVR
+      show("lnCoreToLan", state.hasCoreSwitch);
+      show("lnCoreToDvr", state.hasCoreSwitch);
+    }
+
+    function toggleSimulation() {
+      const area = document.getElementById('simulationArea');
+      const btn = document.getElementById('simulateBtn');
+      const isVisible = area.style.display !== 'none';
+      
+      if (isVisible) {
+        area.style.display = 'none';
+        btn.innerHTML = '<span style="font-size:16px;">📊</span> Simular';
+      } else {
+        // Preenche a simulação com os dados do cenário atual
+        const currentScenario = cenarios[currentScenarioKey];
+        fillSimulation(currentScenario);
+        area.style.display = 'block';
+        btn.innerHTML = '<span style="font-size:16px;">✖️</span> Fechar';
+        
+        // Scroll suave até a simulação
+        setTimeout(() => {
+          area.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      }
+    }
+
+    function fillSimulation(c) {
+      const area = document.getElementById('simulationArea');
+      const services = c.servico || [];
+      
+      let html = '<div style="font-weight:700; color:var(--text); margin-bottom:12px; font-size:14px;">💰 Simulação de Parcelas (40% / 30% / 30%)</div>';
+      html += '<div class="simulation-grid">';
+      
+      services.forEach((s, idx) => {
+        const serviceNames = ['Essencial', 'Completo', 'Recomendado'];
+        const serviceIcons = ['⚡', '🎯', '👑'];
+        
+        // Verifica se tem desconto aplicado
+        const hasDiscount = s.discountApplied;
+        const currentPrice = hasDiscount ? s.original : s.faixa;
+        
+        // Remove formatação e converte para número
+        const priceValue = parseFloat(currentPrice.replace("R$ ", "").replace(/\./g, "").replace(",", "."));
+        
+        const parcela1 = priceValue * 0.40;
+        const parcela2 = priceValue * 0.30;
+        const parcela3 = priceValue * 0.30;
+        
+        html += `
+          <div class="simulation-card">
+            <div class="simulation-title">
+              <span>${serviceIcons[idx]}</span>
+              <span>${serviceNames[idx]}</span>
+            </div>
+            <div class="simulation-values">
+              <div class="simulation-row">
+                <span>1ª parcela (40%):</span>
+                <strong>${brl(parcela1)}</strong>
+              </div>
+              <div class="simulation-row">
+                <span>2ª parcela (30%):</span>
+                <strong>${brl(parcela2)}</strong>
+              </div>
+              <div class="simulation-row">
+                <span>3ª parcela (30%):</span>
+                <strong>${brl(parcela3)}</strong>
+              </div>
+              <div class="simulation-row total">
+                <span>Total:</span>
+                <strong>${currentPrice}</strong>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      
+      html += '</div>';
+      html += '<div style="margin-top:12px; padding:10px; background:rgba(255, 255, 255, 0.6); border-radius:8px; font-size:12px; color:var(--text-muted); text-align:center;">💡 As parcelas são calculadas com base no valor do serviço selecionado' + (services.some(s => s.discountApplied) ? ' (com desconto aplicado)' : '') + '</div>';
+      
+      area.innerHTML = html;
     }
 
     function buildServicosUI(c){
@@ -1644,13 +2050,86 @@
         const card = document.createElement("div");
         card.className = "pack";
         card.style.borderColor = idx === 2 ? "rgba(124,196,255,.35)" : "var(--line)";
+        
+        // Badge de desconto
+        const badge = document.createElement("div");
+        badge.className = "discount-badge";
+        badge.innerHTML = '💵 Clique para o valor de desconto';
 
         const h = document.createElement("h3");
         h.textContent = p.nome;
 
+        // Wrapper de preço
+        const priceWrapper = document.createElement("div");
+        priceWrapper.className = "price-wrapper";
+        
         const range = document.createElement("div");
         range.className = "range";
         range.textContent = p.faixa;
+        
+        priceWrapper.appendChild(range);
+        
+        // Preços
+        const currentPrice = p.faixa;
+        const discountedPrice = p.original; // Usar o preço original como "desconto"
+        
+        // Calcular economia e percentual REAL
+        const currentValue = parseFloat(currentPrice.replace("R$ ", "").replace(".", "").replace(",", "."));
+        const discountedValue = parseFloat(discountedPrice.replace("R$ ", "").replace(".", "").replace(",", "."));
+        const savings = currentValue - discountedValue;
+        const percentDiscount = ((savings / currentValue) * 100).toFixed(0);
+        
+        let isDiscountApplied = false;
+        
+        // Evento de clique no CARD INTEIRO
+        card.addEventListener("click", () => {
+          isDiscountApplied = !isDiscountApplied;
+          
+          if(isDiscountApplied) {
+            // Limpar wrapper
+            priceWrapper.innerHTML = "";
+            
+            // Preço original riscado
+            const originalPriceEl = document.createElement("div");
+            originalPriceEl.className = "original-price";
+            originalPriceEl.textContent = currentPrice;
+            
+            // Linha com preço e badge
+            const discountLine = document.createElement("div");
+            discountLine.className = "discount-price-line";
+            
+            // Preço com desconto
+            const discountPriceEl = document.createElement("div");
+            discountPriceEl.className = "range";
+            discountPriceEl.textContent = discountedPrice;
+            
+            // Badge de economia com percentual
+            const savingsEl = document.createElement("span");
+            savingsEl.className = "savings";
+            savingsEl.innerHTML = `<span style="font-size:14px">✓</span> ${percentDiscount}% OFF`;
+            
+            discountLine.appendChild(discountPriceEl);
+            discountLine.appendChild(savingsEl);
+            
+            priceWrapper.appendChild(originalPriceEl);
+            priceWrapper.appendChild(discountLine);
+            
+            card.classList.add("discount-applied");
+            badge.innerHTML = '✓ Desconto ativo';
+            toast(`🎉 ${percentDiscount}% de desconto! Economize ${brl(savings)}`);
+          } else {
+            // Voltar ao preço normal
+            priceWrapper.innerHTML = "";
+            const normalRange = document.createElement("div");
+            normalRange.className = "range";
+            normalRange.textContent = currentPrice;
+            priceWrapper.appendChild(normalRange);
+            
+            card.classList.remove("discount-applied");
+            badge.innerHTML = '💵 Clique para o valor de desconto';
+            toast("Preço padrão restaurado");
+          }
+        });
 
         const ul = document.createElement("ul");
         p.bullets.forEach(b=>{
@@ -1659,8 +2138,9 @@
           ul.appendChild(li);
         });
 
+        card.appendChild(badge);
         card.appendChild(h);
-        card.appendChild(range);
+        card.appendChild(priceWrapper);
         card.appendChild(ul);
         packs.appendChild(card);
       });
@@ -1783,6 +2263,9 @@
 
     async function renderScenario(key, {initial=false} = {}){
       const c = cenarios[key];
+      
+      // Atualiza cenário atual
+      currentScenarioKey = key;
 
       setTabs(key);
 
