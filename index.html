@@ -1103,6 +1103,23 @@
       a{ text-decoration: none; }
     }
 
+    /* Proteção (camada de dissuasão) */
+    body, .wrap, .card, .topology, .grid, .section, .packs{
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    #btnCopy, #btnPrint, #btnShare{
+      display: none !important;
+    }
+
+    @media print{
+      body{ display: none !important; }
+    }
+
     /* Accessibility */
     @media (prefers-reduced-motion: reduce){
       *,
@@ -2350,8 +2367,33 @@
       document.querySelectorAll(".reveal").forEach(el=> obs.observe(el));
     }
 
+    function enableContentProtection(){
+      const prevent = (e)=>{
+        e.preventDefault();
+        return false;
+      };
+
+      ["copy", "cut", "paste", "contextmenu", "selectstart", "dragstart"].forEach((evt)=>{
+        document.addEventListener(evt, prevent);
+      });
+
+      document.addEventListener("keydown", (e)=>{
+        const key = (e.key || "").toLowerCase();
+        if ((e.ctrlKey || e.metaKey) && ["c", "x", "v", "a", "s", "p", "u"].includes(key)) {
+          e.preventDefault();
+        }
+        if (key === "printscreen") {
+          e.preventDefault();
+        }
+      });
+
+      window.addEventListener("beforeprint", prevent);
+      window.print = () => toast("Impressão desativada.");
+    }
+
     // ---------- Boot ----------
     (function(){
+      enableContentProtection();
       initReveal();
 
       const updatedAt = new Intl.DateTimeFormat("pt-BR", { dateStyle:"medium" }).format(new Date());
