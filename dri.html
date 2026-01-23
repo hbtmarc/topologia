@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#ffffff" />
-  <title>Proposta • Reels Mapa do Carnaval</title>
+  <title>Proposta Comercial • Reels “Mapa do Carnaval”</title>
 
   <style>
     :root{
@@ -194,6 +194,13 @@
     .card .hd p{ margin:12px 0 0; color: var(--text-muted); font-size:14px; line-height:1.6; }
     .card .bd{ padding:24px; }
 
+    .pkg-layout{ display:grid; gap:18px; }
+    @media (min-width: 900px){
+      .pkg-layout{ grid-template-columns: minmax(0, 1fr) 280px; align-items:start; }
+      .pkg-aside{ position: sticky; top: 96px; }
+    }
+    .pkg-aside{ display:flex; align-items:center; justify-content:center; }
+
     .small{ font-size:13px; color: var(--text-muted); line-height:1.6; }
     .list{ margin:10px 0 0; padding:0 0 0 20px; }
     .list li{ margin:6px 0; color: var(--text); font-size:13px; line-height:1.6; }
@@ -201,12 +208,27 @@
     .hr{ height:1px; background: var(--border); margin:14px 0; }
 
     .price{
-      margin:10px 0 0; font-size:22px; font-weight:800; letter-spacing:-.02em;
+      margin:10px 0 0;
+      display:flex; flex-direction:column; gap:10px;
+      padding:14px 16px; border:1px solid var(--border);
+      border-radius: 14px; background: rgba(255,255,255,.7);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+      text-align:center; align-items:center; width:100%;
+    }
+    .price-toggle{ cursor: pointer; }
+    .price-label{ font-size:12px; letter-spacing:.08em; text-transform:uppercase; color: var(--text-muted); font-weight:700; }
+    .price-amount{
+      font-size:26px; font-weight:800; letter-spacing:-.02em;
       background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
       -webkit-background-clip:text; -webkit-text-fill-color: transparent; background-clip:text;
     }
-    .price-toggle{ cursor: pointer; }
-    .price small{ font-weight:600; font-size:12px; color: var(--text-muted); -webkit-text-fill-color: initial; }
+    .price-hint{ font-size:12px; color: var(--text-muted); }
+    .price-cta{ font-size:12px; font-weight:700; color: var(--accent); }
+    .price-toggle:hover .price-cta{ color: var(--accent-dark); }
+    .price.is-discount .price-amount{
+      background: linear-gradient(135deg, #10b981 0%, #22c55e 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color: transparent; background-clip:text;
+    }
 
     details{ margin-top:10px; border-top:1px dashed var(--border); padding-top:10px; }
     summary{ cursor:pointer; font-size:13px; color: var(--accent); list-style:none; }
@@ -251,8 +273,8 @@
             </svg>
           </div>
           <div style="min-width:0">
-            <h1>Proposta • Reels “Mapa do Carnaval”</h1>
-            <div class="sub">Single page • mobile-first • tabs de pacote • proposta objetiva</div>
+            <h1>Proposta Comercial • Reels “Mapa do Carnaval”</h1>
+            <div class="sub">Obra audiovisual 9:16 • narrativa + direção + pós-produção • pacotes claros • extras controlados</div>
           </div>
         </div>
         <div class="actions">
@@ -276,23 +298,23 @@
   <main>
     <section class="hero">
       <div class="wrap">
-        <h2 class="title">Reels (9:16) — Proposta objetiva, com limites e extras (anti-susto)</h2>
+        <h2 class="title">Mapa do Carnaval</h2>
         <p class="lead">
-          Estrutura enxuta para um Reels “simples”, com transição <b>mapa → festa</b>, valores fechados por pacote,
-          e adicionais bem definidos para evitar surpresas. Ajuste livre dos textos no próprio HTML.
+          Uma peça audiovisual bem construída: abertura com o mapa, transição para a festa, ritmo, continuidade, som e cor.
+          Você escolhe o nível de produção por pacote; valores fechados, prazos estimados e extras definidos antes de começar.
         </p>
 
         <div class="chips" aria-label="Resumo rápido">
           <span class="chip"><span class="dot"></span> <b>9:16</b> vertical</span>
-          <span class="chip"><span class="dot good"></span> <b>PIX</b> com desconto</span>
-          <span class="chip"><span class="dot warn"></span> <b>Cartão</b> com taxa embutida</span>
+          <span class="chip"><span class="dot good"></span> <b>Desconto</b> disponível</span>
+          <span class="chip"><span class="dot warn"></span> <b>Valor base</b> transparente</span>
           <span class="chip"><b id="updatedAt">Atualizado em —</b></span>
         </div>
 
         <nav class="tabs no-print" role="tablist" aria-label="Pacotes">
-          <button class="tab" role="tab" aria-selected="true" data-scn="A"><span class="badge">A</span> Pacote 0</button>
+          <button class="tab" role="tab" aria-selected="true" data-scn="A"><span class="badge">A</span> Edição</button>
           <button class="tab" role="tab" aria-selected="false" data-scn="B"><span class="badge">B</span> Essencial</button>
-          <button class="tab" role="tab" aria-selected="false" data-scn="C"><span class="badge">C</span> Padrão</button>
+          <button class="tab" role="tab" aria-selected="false" data-scn="C"><span class="badge">C</span> Cinemático</button>
         </nav>
 
         <div class="grid">
@@ -302,33 +324,42 @@
               <p id="pkgDesc">—</p>
             </div>
             <div class="bd">
-              <ul class="list" id="pkgList"></ul>
-              <details>
-                <summary id="pkgNoteTitle">Ver observações</summary>
-                <p class="small" id="pkgNote">—</p>
-              </details>
-              <div class="price price-toggle" id="pkgPrice" role="button" tabindex="0" aria-pressed="false">—</div>
+              <div class="pkg-layout">
+                <div class="pkg-main">
+                  <ul class="list" id="pkgList"></ul>
+                  <details>
+                    <summary id="pkgNoteTitle">Ver observações</summary>
+                    <p class="small" id="pkgNote">—</p>
+                  </details>
+                </div>
+                <aside class="pkg-aside">
+                  <div class="price price-toggle" id="pkgPrice" role="button" tabindex="0" aria-pressed="false">—</div>
+                </aside>
+              </div>
             </div>
           </section>
 
           <section class="card reveal" id="escopo">
             <div class="hd">
               <h2>Escopo essencial</h2>
-              <p>O que está incluso e o que precisamos para iniciar.</p>
+              <p>O que entregamos e o que precisamos para executar com qualidade audiovisual.</p>
             </div>
             <div class="bd">
               <ul class="list">
-                <li>1 Reels vertical (9:16) • recomendado 15–30s • máx 60s</li>
-                <li>Roteiro curto + shotlist</li>
-                <li>Pós: edição, sound design leve, color grading leve, motion simples (texto/CTA)</li>
-                <li>1 efeito principal: “mapa → festa” por match cut + máscara</li>
+                <li>1 Reels vertical (9:16) • recomendado 15–30s • máximo 60s</li>
+                <li>Concepção (gancho) + roteiro objetivo + shotlist (plano de captação)</li>
+                <li>Direção de cena (quando houver captação) focada em continuidade e leitura do mapa</li>
+                <li>Pós-produção: montagem, ritmo, som (sound design), cor (color grade) e finalização</li>
+                <li>Textos na tela + CTA com identidade visual consistente</li>
+                <li>1 efeito principal: transição “mapa → festa” via match cut + máscara</li>
               </ul>
               <div class="hr"></div>
-              <h3>Você envia</h3>
+              <h3>Materiais necessários</h3>
               <ul class="list">
-                <li>CTA final aprovado (texto)</li>
-                <li>Logo/brand kit (se houver)</li>
-                <li>Screen recording do mapa (ou mock, se necessário)</li>
+                <li>CTA final aprovado (texto + @/link, se houver)</li>
+                <li>Logo/brand kit (cores, tipografia e referências, se houver)</li>
+                <li>Captura do mapa (screen recording) ou acesso ao material/arte</li>
+                <li>2–3 referências (opcional) para alinhar linguagem, ritmo e estética</li>
               </ul>
             </div>
           </section>
@@ -336,60 +367,27 @@
           <section class="card reveal" id="prazos">
             <div class="hd">
               <h2>Prazos + Condições</h2>
-              <p>Timeline e regras básicas de entrega.</p>
+              <p>Cronograma estimado e condições para manter qualidade e previsibilidade.</p>
             </div>
             <div class="bd">
               <ul class="list">
-                <li>D1–D2: briefing + roteiro/shotlist</li>
-                <li>D3: captação</li>
-                <li>D4: 1º corte</li>
-                <li>D5: revisão</li>
-                <li>D6: entrega final</li>
+                <li>Dia 1–2: briefing + roteiro/shotlist</li>
+                <li>Dia 3: captação (quando inclusa no pacote)</li>
+                <li>Dia 4: primeiro corte</li>
+                <li>Dia 5: ajustes (rodada de revisão)</li>
+                <li>Dia 6: entrega final</li>
               </ul>
-              <p class="small">Chroma/rotoscopia: +3 a +5 dias (dependendo do volume de recortes).</p>
+              <p class="small">Recortes avançados (chroma/rotoscopia): +3 a +5 dias (conforme complexidade).</p>
               <div class="hr"></div>
               <ul class="list">
-                <li>Pagamento sugerido: 50% na aprovação + 50% na entrega</li>
-                <li>Prazo inicia após aprovação do pacote + envio dos assets</li>
-                <li>Rodada de revisão = uma lista consolidada de ajustes</li>
+                <li>Pagamento sugerido: 50% na aprovação do pacote + 50% na entrega</li>
+                <li>Prazo conta após aprovação + recebimento dos materiais necessários</li>
+                <li>Rodada de revisão = uma lista única e consolidada de ajustes</li>
               </ul>
-              <p class="small">Custos não inclusos: transporte/estacionamento, figurino/props, locação paga, música licenciada.</p>
+              <p class="small">Não inclusos (quando aplicável): deslocamento/estacionamento, figurino/props, locação paga, autorizações e música licenciada.</p>
             </div>
           </section>
 
-          <section class="card reveal" id="extras">
-            <div class="hd">
-              <h2>Extras essenciais</h2>
-              <p>Somente o que mais costuma ser pedido.</p>
-            </div>
-            <div class="bd">
-              <ul class="list">
-                <li>Teleporte extra: <b>R$ 180</b> cada</li>
-                <li>Revisão extra: <b>R$ 120</b> por rodada</li>
-                <li>Legenda palavra-por-palavra: <b>R$ 180</b></li>
-                <li>Chroma/rotoscopia: <b>a partir de R$ 650</b> (+ R$ 200 por cena extra)</li>
-              </ul>
-              <div class="hr"></div>
-              <p class="small">Sugestão: para manter o projeto “simples”, evite chroma/rotoscopia e limite a 1–2 teleportes.</p>
-            </div>
-          </section>
-
-          <section class="card reveal" id="checklist">
-            <div class="hd">
-              <h2>Checklist rápido (para fechar)</h2>
-              <p>Últimas validações antes de iniciar.</p>
-            </div>
-            <div class="bd">
-              <ul class="list">
-                <li>Pacote escolhido (A/B/C)</li>
-                <li>Data de captação definida</li>
-                <li>CTA final aprovado</li>
-                <li>Screen recording do mapa (se houver)</li>
-              </ul>
-              <div class="hr"></div>
-              <p class="small">Você pode editar o conteúdo direto no HTML para reutilizar esse modelo em outras propostas.</p>
-            </div>
-          </section>
         </div>
       </div>
     </section>
@@ -403,56 +401,60 @@
       const PACKAGES = {
         A: {
           code:'A',
-          name:'Pacote 0 — Só edição',
-          title:'A • Pacote 0 — Só edição (vocês gravam / eu edito)',
-          desc:'Ideal para orçamento curto. Você grava no celular e eu entrego o Reels pronto, com mapa + CTA.',
+          name:'Edição — vocês gravam',
+          title:'A • Edição (vocês gravam / eu finalizo)',
+          desc:'Para quem já tem o material gravado e quer um Reels com narrativa clara, integração do mapa e acabamento profissional (som/cor).',
           base: 500,
           pix: 440,
           bullets:[
-            'Decupagem + ritmo + trilha/áudio (sem música licenciada, se for impulsionar)',
-            'Inserção do “Mapa do Carnaval” (overlay / screen recording / mock)',
-            'Texto-chave/CTA (simples)',
+            'Curadoria do material + montagem com ritmo e intenção (gancho → entrega → CTA)',
+            'Tratamento de áudio + trilha (licenciamento para mídia paga é à parte, se necessário)',
+            'Integração do “Mapa do Carnaval” (overlay / screen recording / mock)',
+            'Textos na tela + CTA final (simples e direto)',
             '1 rodada de revisão',
-            '1 export final (9:16)'
+            'Entrega final em 9:16 (MP4) pronta para publicar'
           ],
           noteTitle:'Ver observações',
-          note:'Se precisar de legenda palavra-por-palavra, versões extras ou efeitos adicionais, isso entra na tabela de extras.',
+          note:'Legenda palavra por palavra, versões adicionais, adaptações para anúncios e efeitos avançados entram como extras (pré-combinados).',
           includedRev: 1
         },
         B: {
           code:'B',
-          name:'Pacote 1 — Essencial',
-          title:'B • Pacote 1 — Essencial (captação + edição lean)',
-          desc:'Melhor equilíbrio entre qualidade e velocidade. Produção enxuta com 1 teleporte (mapa → festa), sem chroma.',
+          name:'Essencial — captação + edição',
+          title:'B • Essencial (captação + edição enxuta)',
+          desc:'Equilíbrio entre qualidade e velocidade. Captação objetiva e pós bem resolvida, com 1 transição “mapa → festa” e acabamento audiovisual.',
           base: 1400,
           pix: 1250,
           bullets:[
-            'Roteiro curto + shotlist (enxuto)',
+            'Briefing + roteiro/shotlist (gancho e estrutura)',
             'Até 2h de captação • 1 locação',
-            '1 teleporte incluso (match cut + máscara)',
-            'Motion simples + sound design leve',
-            '1 rodada de revisão • 1 export final'
+            '1 transição/teleporte (match cut + máscara)',
+            'Edição + color grade + sound design leve',
+            'Textos/CTA com identidade visual consistente',
+            '1 rodada de revisão • entrega final 9:16'
           ],
-          noteTitle:'Ver fora de escopo típico',
-          note:'Não inclui locação paga, figurino/props específicos, autorização de espaço, nem música licenciada.',
+          noteTitle:'Observações de escopo',
+          note:'Não inclui locação paga, figurino/props específicos, autorizações, deslocamentos/estacionamento, nem música licenciada (quando necessária).',
           includedRev: 1
         },
         C: {
           code:'C',
-          name:'Pacote 2 — Padrão',
-          title:'C • Pacote 2 — Padrão (mais completo, ainda controlado)',
-          desc:'Para “cara de campanha” sem virar produção grande. Inclui 2 teleportes + versão curta.',
+          name:'Cinemático — direção e acabamento',
+          title:'C • Cinemático (mais impacto, mais construção)',
+          desc:'Para uma peça com mais direção, construção e acabamento — sem virar produção gigante. Inclui 2 transições, cor mais trabalhada e versão curta.',
           base: 1900,
           pix: 1700,
           bullets:[
-            'Até 4h de captação • até 2 locações',
-            '2 teleportes inclusos (match cut + máscara)',
-            'Motion mais caprichado (zoom/ênfase no mapa + CTA)',
+            'Direção + captação com foco em continuidade (até 4h) • até 2 locações',
+            'Roteiro/shotlist mais detalhado (batidas e intenção de cena)',
+            '2 transições/teleportes (match cut + máscara) com acabamento superior',
+            'Color grade mais cinematográfico + sound design mais presente',
+            'Motion e tipografia mais refinados (ênfases no mapa, títulos e CTA)',
             '2 rodadas de revisão',
-            '+ 1 versão curta (10–30s)'
+            'Entrega principal + 1 versão curta (10–30s)'
           ],
-          noteTitle:'Chroma/rotoscopia?',
-          note:'“Fundo verde”/recorte refinado não está incluso por padrão (é extra, pois aumenta tempo e risco).',
+          noteTitle:'Chroma/recortes avançados',
+          note:'Chroma/rotoscopia (recortes complexos e refinamento) não está incluso — entra como extra, pois aumenta tempo de pós e risco de retrabalho.',
           includedRev: 2
         }
       };
@@ -493,7 +495,13 @@
         priceEl.dataset.pix = String(pkg.pix);
         priceDiscounted = false;
         priceEl.setAttribute('aria-pressed', 'false');
-        priceEl.innerHTML = `${BRL(pkg.base)} <small>(cartão / base)</small> • <span style="color:var(--success)">${BRL(pkg.pix)}</span> <small>(PIX à vista)</small>`;
+        priceEl.classList.remove('is-discount');
+        priceEl.innerHTML = `
+          <div class="price-label">Valor base</div>
+          <div class="price-amount">${BRL(pkg.base)}</div>
+          <div class="price-hint">Clique para revelar o valor com desconto</div>
+          <div class="price-cta">Ver desconto</div>
+        `;
 
         const list = el('pkgList');
         list.innerHTML = '';
@@ -515,22 +523,23 @@
       function buildCopyText(key){
         const pkg = PACKAGES[key];
         return [
-          'PROPOSTA – REELS “MAPA DO CARNAVAL” (9:16)',
+          'PROPOSTA COMERCIAL — REELS “MAPA DO CARNAVAL” (9:16)',
           '',
           `Pacote selecionado: ${pkg.code} • ${pkg.name}`,
-          `Preço cartão/base: ${BRL(pkg.base)} | PIX à vista: ${BRL(pkg.pix)}`,
+          `Valor base: ${BRL(pkg.base)} | Valor com desconto: ${BRL(pkg.pix)}`,
           '',
           'Inclui (resumo):',
           '• 1 Reels vertical (9:16)',
-          '• Edição com ritmo de Reels + sound design leve',
-          '• Color grading leve + motion simples (texto/CTA)',
-          '• Efeito principal: “mapa → festa” por match cut + máscara',
+          '• Roteiro/shotlist (conforme pacote)',
+          '• Edição com ritmo de Reels + tratamento de áudio',
+          '• Ajustes de cor + motion/textos/CTA',
+          '• Transição “mapa → festa” via match cut + máscara',
           `• Revisões inclusas no pacote: ${pkg.includedRev}`,
           '',
           'Condições:',
           '• 50% na aprovação + 50% na entrega',
-          '• Prazo inicia após aprovação + envio dos assets',
-          '• Extras só entram se solicitados (tabela fechada).'
+          '• Prazo conta após aprovação + recebimento dos materiais',
+          '• Extras somente mediante solicitação e orçamento/valores definidos previamente.'
         ].join('\n');
       }
 
@@ -556,9 +565,23 @@
         priceEl.setAttribute('aria-pressed', priceDiscounted ? 'true' : 'false');
 
         if(priceDiscounted){
-          priceEl.innerHTML = `<span style="text-decoration:line-through; opacity:.6; font-weight:600">${BRL(base)}</span> <small>(cartão / base)</small> • <span style="color:var(--success)">${BRL(pix)}</span> <small>(PIX à vista)</small>`;
+          priceEl.classList.add('is-discount');
+          priceEl.innerHTML = `
+            <div class="price-label">Valor com desconto</div>
+            <div class="price-amount">${BRL(pix)}</div>
+            <div class="price-hint">Clique para voltar ao valor base</div>
+            <div class="price-cta">Ver valor base</div>
+          `;
+          toast('Desconto aplicado.');
         }else{
-          priceEl.innerHTML = `${BRL(base)} <small>(cartão / base)</small> • <span style="color:var(--success)">${BRL(pix)}</span> <small>(PIX à vista)</small>`;
+          priceEl.classList.remove('is-discount');
+          priceEl.innerHTML = `
+            <div class="price-label">Valor base</div>
+            <div class="price-amount">${BRL(base)}</div>
+            <div class="price-hint">Clique para revelar o valor com desconto</div>
+            <div class="price-cta">Ver desconto</div>
+          `;
+          toast('Valor base restaurado.');
         }
       }
 
