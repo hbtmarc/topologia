@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#ffffff" />
-  <title>Gorillas • Topologia de Rede (4 Cenários)</title>
+  <title>Gorillas • Cenário Recomendado</title>
 
   <style>
     :root{
@@ -809,11 +809,11 @@
     .packs{
       display: grid;
       gap: 16px;
+      grid-template-columns: 1fr;
     }
     
     @media (min-width: 640px){
       .packs{ 
-        grid-template-columns: repeat(3, 1fr);
         gap: 18px;
       }
     }
@@ -1153,7 +1153,7 @@
           </div>
           <div style="min-width:0">
             <h1>Gorillas • Topologia de Rede</h1>
-            <div class="sub" id="subtitle">4 cenários orçados • 2 links com failover • 14+ dispositivos</div>
+            <div class="sub" id="subtitle">Cenário recomendado • 2 links com failover • 14+ dispositivos</div>
           </div>
         </div>
 
@@ -1178,11 +1178,11 @@
   <main>
     <section class="hero">
       <div class="wrap">
-        <h2 class="title">Proposta de topologia e levantamento de materiais</h2>
+        <h2 class="title">Cenário recomendado — proposta e materiais</h2>
         <p class="lead">
-          Apresentação para cliente com quatro cenários: <b>Barato</b>, <b>Custo-benefício</b>, <b>Melhor dos mundos</b> e <b>Recomendado</b>.
-          Estrutura: 2 links WAN com <b>failover</b>, core <b>Gigabit</b>, 4 APs (3 salão + 1 bar), rack de chão (rede + CFTV).
-          Escopo: <b>materiais</b> + <b>serviço</b> (sem infraestrutura de cabeamento horizontal).
+          Estrutura recomendada para manter a operação estável e segura: 2 links WAN com <b>failover</b>, core <b>Gigabit</b>,
+          4 APs (3 salão + 1 bar) e rack com proteção elétrica + nobreak. Escopo: <b>materiais</b> + <b>serviço</b>
+          (sem infraestrutura de cabeamento horizontal).
         </p>
 
         <div class="chips" aria-label="Resumo rápido">
@@ -1192,19 +1192,12 @@
           <span class="chip"><span class="dot" style="background:var(--purple)"></span> <b>14+</b> dispositivos cabeados</span>
         </div>
 
-        <nav class="tabs" role="tablist" aria-label="Cenários">
-          <button class="tab" role="tab" id="tabA" aria-selected="true" data-scn="A"><span class="badge">A</span> Barato</button>
-          <button class="tab" role="tab" id="tabB" aria-selected="false" data-scn="B"><span class="badge">B</span> Custo-benefício</button>
-          <button class="tab" role="tab" id="tabC" aria-selected="false" data-scn="C"><span class="badge">C</span> Melhor dos mundos</button>
-          <button class="tab" role="tab" id="tabD" aria-selected="false" data-scn="D"><span class="badge">D</span> Recomendado</button>
-        </nav>
-
         <div class="grid">
           <!-- Left: Topologia + Materiais -->
           <div class="card reveal" id="cardTopo">
             <div class="hd">
-              <h2 id="scnTitle">Cenário A — Barato</h2>
-              <p id="scnDesc">Gigabit no core com PoE econômico, Wi-Fi 5, proteção elétrica (iClamper + PDU), sem nobreak.</p>
+              <h2 id="scnTitle">Cenário Recomendado</h2>
+              <p id="scnDesc">Core Gigabit + Wi-Fi 5 + nobreak. Equilíbrio entre custo e desempenho.</p>
 
               <div class="kpis" aria-label="Indicadores">
                 <div class="kpi"><div class="l">Materiais</div><div class="v" id="kpiTotal">R$ —</div><div class="s">Total estimado</div></div>
@@ -1326,9 +1319,7 @@
                 </svg>
               </div>
 
-              <div class="section">
-                <div class="cat" id="materials"></div>
-              </div>
+              
             </div>
           </div>
 
@@ -1345,6 +1336,13 @@
               <div class="bd">
                 <div class="packs" id="packs"></div>
 
+                <div class="section">
+                  <div style="border:2px solid var(--border); border-radius:var(--radius); padding:18px; background:var(--bg-alt);">
+                    <div id="materialsSummaryTitle" style="font-weight:700; margin-bottom:8px; color:var(--text);">Lista de materiais (organizada)</div>
+                    <div id="materialsSummary" style="display:grid; gap:10px;"></div>
+                  </div>
+                </div>
+
                 <div class="section" style="margin-top: 32px;">
                   <div style="border-left: 4px solid var(--success); border-radius:var(--radius); padding:20px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.02) 100%);">
                     <div style="font-weight:700; margin-bottom:14px; color:var(--text); font-size:15px; display:flex; align-items:center; gap:8px;">
@@ -1357,7 +1355,7 @@
                       </div>
                       <div style="display:flex; align-items:start; gap:10px;">
                         <span style="color:var(--success); font-size:18px;">✓</span>
-                        <span><strong>Desconto especial:</strong> 5% de desconto para pagamento à vista (PIX ou transferência)</span>
+                        <span><strong>Condição especial de fechamento (à vista):</strong> 5% de desconto no serviço para pagamento via PIX ou transferência</span>
                       </div>
                       <div style="display:flex; align-items:start; gap:10px;">
                         <span style="color:var(--success); font-size:18px;">✓</span>
@@ -1367,7 +1365,7 @@
                         <span style="color:var(--success); font-size:18px;">✓</span>
                         <div style="flex: 1;">
                           <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
-                            <span><strong>Opcional - Pagamento flexível:</strong> 40% na aprovação + 30% na entrega dos materiais + 30% no go-live</span>
+                            <span><strong>Condição especial de fechamento — Pagamento flexível (valores com desconto):</strong> 40% na aprovação + 30% na entrega dos materiais + 30% no go-live</span>
                             <button id="simulateBtn" onclick="toggleSimulation()" style="padding:6px 14px; border-radius:8px; border:2px solid var(--accent); background:transparent; color:var(--accent); font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s; display:inline-flex; align-items:center; gap:6px;">
                               <span style="font-size:16px;">📊</span>
                               Simular
@@ -1416,153 +1414,10 @@
     // Totais e itens refletem o levantamento que você aprovou na conversa.
     // Preços: referenciais; atualize conforme sua cotação real.
     const cenarios = {
-      A: {
-        code: "A",
-        nome: "Barato",
-        titulo: "Cenário A — Barato",
-        desc: "Core Gigabit sem PoE, Wi-Fi 4, proteção elétrica (iClamper + PDU), sem nobreak.",
-        wifi: "Wi-Fi 4 (AP 360)",
-        topoMode: "SINGLE_CORE_NO_UPS",
-        totais: { materiais: 4119.00 },
-        categorias: [
-          {
-            nome: "Ativos • Roteamento e Switching",
-            itens: [
-              { nome: "Intelbras R3005G (dual WAN com failover)", qtd: 1, un: 655.00 },
-              { nome: "Intelbras S1124G (24 portas Gigabit, não-PoE)", qtd: 1, un: 850.00 },
-            ]
-          },
-          {
-            nome: "Wi-Fi",
-            itens: [
-              { nome: "Intelbras AP 360 (Wi-Fi 4) — 2 APs (salão)", qtd: 2, un: 400.00 },
-            ]
-          },
-          {
-            nome: "Rack e Elétrica",
-            itens: [
-              { nome: "Rack de chão 19\" (referência 19U)", qtd: 1, un: 1165.00 },
-              { nome: "PDU 19\" (8 tomadas)", qtd: 1, un: 65.00 },
-              { nome: "Clamper iClamper Energia 8 (DPS)", qtd: 1, un: 148.00 },
-            ]
-          },
-          {
-            nome: "Acessórios",
-            itens: [
-              { nome: "Bandeja 1U (rack)", qtd: 1, un: 90.00 },
-              { nome: "Guias de cabo 1U (rack)", qtd: 2, un: 32.00 },
-              { nome: "Patch cords Cat6 1 m (organização rack/AP/uplinks)", qtd: 10, un: 14.50 },
-              { nome: "Miudezas (RJ45/porca-gaiola/velcro/etiquetas) — estimativa", qtd: 1, un: 137.00 },
-            ]
-          }
-        ],
-        servico: [
-          { nome: "Essencial", faixa: "R$ 2.730", original: "R$ 2.600", bullets: ["Configuração R3005G (WAN1/WAN2 + failover)", "SSID Guest + Staff, regras básicas", "Checklist e handover"] },
-          { nome: "Completo", faixa: "R$ 3.670", original: "R$ 3.500", bullets: ["Tudo do Essencial", "Políticas de isolamento/limite de banda", "Documentação (mapa lógico + inventário)"] },
-          { nome: "Recomendado", faixa: "R$ 4.340", original: "R$ 4.130", bullets: ["Tudo do Completo", "Pós go-live assistido", "Hardening e backup de configurações"] },
-        ]
-      },
-
-      B: {
-        code: "B",
-        nome: "Custo-benefício",
-        titulo: "Cenário B — Custo-benefício",
-        desc: "Core Gigabit sem PoE, Wi-Fi 5 com 4 APs e nobreak simples.",
-        wifi: "Wi-Fi 5 (AP 1350 AC-S)",
-        topoMode: "SINGLE_CORE_WITH_UPS",
-        totais: { materiais: 8802.00 },
-        categorias: [
-          {
-            nome: "Ativos • Roteamento e Switching",
-            itens: [
-              { nome: "Intelbras R3005G (dual WAN com failover)", qtd: 1, un: 655.00 },
-              { nome: "Intelbras S1124G (24 portas Gigabit, não-PoE)", qtd: 1, un: 850.00 },
-            ]
-          },
-          {
-            nome: "Wi-Fi",
-            itens: [
-              { nome: "Intelbras AP 1350 AC-S (Wi-Fi 5) — 4 APs (3 salão + 1 bar)", qtd: 4, un: 800.00 },
-            ]
-          },
-          {
-            nome: "Rack e Elétrica",
-            itens: [
-              { nome: "Nobreak Intelbras XNB 1200", qtd: 1, un: 322.00 },
-              { nome: "Rack de chão 19\" (referência 19U)", qtd: 1, un: 1165.00 },
-              { nome: "PDU 19\" (8 tomadas)", qtd: 1, un: 65.00 },
-              { nome: "Clamper iClamper Energia 8 (DPS)", qtd: 1, un: 148.00 },
-            ]
-          },
-          {
-            nome: "Acessórios",
-            itens: [
-              { nome: "Bandeja 1U (rack)", qtd: 1, un: 90.00 },
-              { nome: "Guias de cabo 1U (rack)", qtd: 2, un: 32.00 },
-              { nome: "Patch cords Cat6 1 m (organização rack/AP/uplinks)", qtd: 10, un: 14.50 },
-              { nome: "Miudezas (RJ45/porca-gaiola/velcro/etiquetas) — estimativa", qtd: 1, un: 137.00 },
-            ]
-          }
-        ],
-        servico: [
-          { nome: "Essencial", faixa: "R$ 3.670", original: "R$ 3.500", bullets: ["Configuração R3005G + fail-over WAN + 4 APs", "SSID Guest + Staff", "Checklist e handover"] },
-          { nome: "Completo", faixa: "R$ 4.620", original: "R$ 4.400", bullets: ["Tudo do Essencial", "VLANs 10/11/12 + rate-limit Guest + AC-S roaming", "Doc. completa (mapa + inventário + senhas)"] },
-          { nome: "Recomendado", faixa: "R$ 5.560", original: "R$ 5.300", bullets: ["Tudo do Completo", "QoS TEF/PDV + monitoramento 7 dias", "Pós go-live assistido"] },
-        ]
-      },
-
-      C: {
-        code: "C",
-        nome: "Melhor dos mundos",
-        titulo: "Cenário C — Melhor dos mundos",
-        desc: "Core PoE gerenciável (VLAN/QoS) e APs Wi-Fi 6, com nobreak simples.",
-        wifi: "Wi-Fi 6 (AP 3000 AX)",
-        topoMode: "SINGLE_POE_CORE_WITH_UPS",
-        totais: { materiais: 13383.00 },
-        categorias: [
-          {
-            nome: "Ativos • Roteamento e Switching",
-            itens: [
-              { nome: "Intelbras R3005G (dual WAN com failover)", qtd: 1, un: 655.00 },
-              { nome: "Intelbras S2328G-PA (24 portas Gigabit PoE gerenciável: VLAN/QoS)", qtd: 1, un: 4998.00 },
-            ]
-          },
-          {
-            nome: "Wi-Fi",
-            itens: [
-              { nome: "Intelbras AP 3000 AX (Wi-Fi 6) — 4 APs (3 salão + 1 bar)", qtd: 4, un: 1342.00 },
-            ]
-          },
-          {
-            nome: "Rack e Elétrica",
-            itens: [
-              { nome: "Nobreak Intelbras XNB 1200", qtd: 1, un: 322.00 },
-              { nome: "Rack de chão 19\" (referência 19U)", qtd: 1, un: 1165.00 },
-              { nome: "PDU 19\" (8 tomadas)", qtd: 1, un: 65.00 },
-              { nome: "Clamper iClamper Energia 8 (DPS)", qtd: 1, un: 148.00 },
-            ]
-          },
-          {
-            nome: "Acessórios",
-            itens: [
-              { nome: "Bandeja 1U (rack)", qtd: 1, un: 90.00 },
-              { nome: "Guias de cabo 1U (rack)", qtd: 2, un: 32.00 },
-              { nome: "Patch cords Cat6 1 m (organização rack/AP/uplinks)", qtd: 10, un: 14.50 },
-              { nome: "Miudezas (RJ45/porca-gaiola/velcro/etiquetas) — estimativa", qtd: 1, un: 137.00 },
-            ]
-          }
-        ],
-        servico: [
-          { nome: "Essencial", faixa: "R$ 4.620", original: "R$ 4.400", bullets: ["Config. router + PoE + 4 APs Wi-Fi 6", "SSIDs + fail-over", "Checklist e handover"] },
-          { nome: "Completo", faixa: "R$ 5.560", original: "R$ 5.300", bullets: ["Tudo do Essencial", "VLANs + roaming + QoS", "Documentação + inventário rack"] },
-          { nome: "Recomendado", faixa: "R$ 6.510", original: "R$ 6.200", bullets: ["Tudo do Completo", "APs WPA3 + monitoramento 7 dias", "Pós go-live + treinamento in-loco"] },
-        ]
-      },
-
       D: {
         code: "D",
         nome: "Recomendado",
-        titulo: "Cenário D — Recomendado",
+        titulo: "Cenário Recomendado",
         desc: "Core Gigabit + Wi-Fi 5 + nobreak. Equilíbrio entre custo e desempenho.",
         wifi: "Wi-Fi 5 (AP 1350 AC-S)",
         topoMode: "SINGLE_CORE_WITH_UPS",
@@ -1601,9 +1456,20 @@
           }
         ],
         servico: [
-          { nome: "Essencial", faixa: "R$ 3.670", original: "R$ 3.500", bullets: ["Config. completa R3005G + PoE + 4 APs AC-S", "SSIDs + VLANs + fail-over", "Checklist e handover"] },
-          { nome: "Completo", faixa: "R$ 4.620", original: "R$ 4.202", bullets: ["Tudo do Essencial", "VLANs 10/11/12 + QoS + rate-limit + roaming AC-S", "Doc. completa + inventário rack"] },
-          { nome: "Recomendado", faixa: "R$ 5.560", original: "R$ 5.030", bullets: ["Tudo do Completo", "Monitoramento 7 dias + ajustes finos", "Pós go-live assistido + treinamento"] },
+          { 
+            nome: "Recomendado", 
+            faixa: "R$ 5.560", 
+            original: "R$ 5.003", 
+            bullets: [
+              "Config. completa R3005G + PoE + 4 APs AC-S",
+              "SSIDs + VLANs + fail-over",
+              "Checklist e handover",
+              "VLANs 10/11/12 + QoS + rate-limit + roaming AC-S",
+              "Doc. completa + inventário rack",
+              "Monitoramento 7 dias + ajustes finos",
+              "Pós go-live assistido"
+            ] 
+          },
         ]
       }
     };
@@ -1640,6 +1506,7 @@
 
     function buildMateriaisUI(c, scenarioKey){
       const wrap = byId("materials");
+      if(!wrap) return;
       wrap.innerHTML = "";
 
       // Container principal
@@ -2011,13 +1878,9 @@
       let html = '<div style="font-weight:700; color:var(--text); margin-bottom:12px; font-size:14px;">💰 Simulação de Parcelas (40% / 30% / 30%)</div>';
       html += '<div class="simulation-grid">';
       
-      services.forEach((s, idx) => {
-        const serviceNames = ['Essencial', 'Completo', 'Recomendado'];
-        const serviceIcons = ['⚡', '🎯', '👑'];
-        
-        // Verifica se tem desconto aplicado
-        const hasDiscount = s.discountApplied;
-        const currentPrice = hasDiscount ? s.original : s.faixa;
+      services.forEach((s) => {
+        // Sempre usa valores com desconto (s.original)
+        const currentPrice = s.original;
         
         // Remove formatação e converte para número
         const priceValue = parseFloat(currentPrice.replace("R$ ", "").replace(/\./g, "").replace(",", "."));
@@ -2029,8 +1892,8 @@
         html += `
           <div class="simulation-card">
             <div class="simulation-title">
-              <span>${serviceIcons[idx]}</span>
-              <span>${serviceNames[idx]}</span>
+              <span>👑</span>
+              <span>${s.nome}</span>
             </div>
             <div class="simulation-values">
               <div class="simulation-row">
@@ -2055,7 +1918,6 @@
       });
       
       html += '</div>';
-      html += '<div style="margin-top:12px; padding:10px; background:rgba(255, 255, 255, 0.6); border-radius:8px; font-size:12px; color:var(--text-muted); text-align:center;">💡 As parcelas são calculadas com base no valor do serviço selecionado' + (services.some(s => s.discountApplied) ? ' (com desconto aplicado)' : '') + '</div>';
       
       area.innerHTML = html;
     }
@@ -2064,15 +1926,15 @@
       const packs = byId("packs");
       packs.innerHTML = "";
 
-      c.servico.forEach((p, idx) => {
+      c.servico.forEach((p) => {
         const card = document.createElement("div");
         card.className = "pack";
-        card.style.borderColor = idx === 2 ? "rgba(124,196,255,.35)" : "var(--line)";
+        card.style.borderColor = "rgba(124,196,255,.35)";
         
         // Badge de desconto
         const badge = document.createElement("div");
         badge.className = "discount-badge";
-        badge.innerHTML = '💵 Clique para o valor de desconto';
+        badge.innerHTML = '💵 Condição especial de fechamento';
 
         const h = document.createElement("h3");
         h.textContent = p.nome;
@@ -2089,13 +1951,17 @@
         
         // Preços
         const currentPrice = p.faixa;
-        const discountedPrice = p.original; // Usar o preço original como "desconto"
+        const discountedPrice = p.original; // Valor com condição especial
         
         // Calcular economia e percentual REAL
         const currentValue = parseFloat(currentPrice.replace("R$ ", "").replace(".", "").replace(",", "."));
         const discountedValue = parseFloat(discountedPrice.replace("R$ ", "").replace(".", "").replace(",", "."));
         const savings = currentValue - discountedValue;
-        const percentDiscount = ((savings / currentValue) * 100).toFixed(0);
+        const computedPercent = Math.ceil((savings / currentValue) * 100);
+        const overridePercents = {
+          "Recomendado": 10
+        };
+        const percentDiscount = (overridePercents[p.nome] || computedPercent).toString().replace(".", ",");
         
         let isDiscountApplied = false;
         
@@ -2133,8 +1999,8 @@
             priceWrapper.appendChild(discountLine);
             
             card.classList.add("discount-applied");
-            badge.innerHTML = '✓ Desconto ativo';
-            toast(`🎉 ${percentDiscount}% de desconto! Economize ${brl(savings)}`);
+            badge.innerHTML = '✓ Condição especial aplicada';
+            toast(`🎉 Condição especial: ${percentDiscount}% de desconto! Economize ${brl(savings)}`);
           } else {
             // Voltar ao preço normal
             priceWrapper.innerHTML = "";
@@ -2144,7 +2010,7 @@
             priceWrapper.appendChild(normalRange);
             
             card.classList.remove("discount-applied");
-            badge.innerHTML = '💵 Clique para o valor de desconto';
+            badge.innerHTML = '💵 Condição especial de fechamento';
             toast("Preço padrão restaurado");
           }
         });
@@ -2167,6 +2033,49 @@
     function setTabs(active){
       document.querySelectorAll(".tab").forEach(btn=>{
         btn.setAttribute("aria-selected", btn.dataset.scn === active ? "true" : "false");
+      });
+    }
+
+    function buildMaterialsSummary(c){
+      const wrap = byId("materialsSummary");
+      const title = byId("materialsSummaryTitle");
+      if(!wrap) return;
+      wrap.innerHTML = "";
+
+      if(title) {
+        const totalMateriais = calcScenarioTotal(c, currentScenarioKey);
+        title.textContent = `Lista de materiais (organizada) — Total: ${brl(totalMateriais)}`;
+      }
+
+      c.categorias.forEach((cat) => {
+        const block = document.createElement("div");
+        block.style.border = "1px solid var(--border)";
+        block.style.borderRadius = "12px";
+        block.style.padding = "12px";
+        block.style.background = "white";
+
+        const title = document.createElement("div");
+        title.style.fontWeight = "700";
+        title.style.marginBottom = "6px";
+        title.style.color = "var(--text)";
+        title.textContent = cat.nome;
+
+        const list = document.createElement("ul");
+        list.style.margin = "0";
+        list.style.paddingLeft = "18px";
+        list.style.color = "var(--text-muted)";
+        list.style.fontSize = "13px";
+        list.style.lineHeight = "1.7";
+
+        cat.itens.forEach((it) => {
+          const li = document.createElement("li");
+          li.textContent = `${it.qtd}x ${it.nome}`;
+          list.appendChild(li);
+        });
+
+        block.appendChild(title);
+        block.appendChild(list);
+        wrap.appendChild(block);
       });
     }
 
@@ -2300,6 +2209,7 @@
 
       buildMateriaisUI(c, key);
       buildServicosUI(c);
+      buildMaterialsSummary(c);
 
       // Skeleton + render do SVG
       byId("topoSkeleton").style.display = "";
@@ -2313,8 +2223,8 @@
       setTopologyMode(c.topoMode, c);
       animateLines();
 
-      // Atualiza hash (link compartilhável)
-      history.replaceState(null, "", `#${key}`);
+      // Sem múltiplos cenários: mantém hash limpo
+      history.replaceState(null, "", "#D");
     }
 
     function buildCopyText(c){
@@ -2399,11 +2309,6 @@
       const updatedAt = new Intl.DateTimeFormat("pt-BR", { dateStyle:"medium" }).format(new Date());
       byId("updatedAt").textContent = updatedAt;
 
-      // Tabs
-      document.querySelectorAll(".tab").forEach(btn=>{
-        btn.addEventListener("click", ()=> renderScenario(btn.dataset.scn));
-      });
-
       byId("btnPrint").addEventListener("click", ()=> window.print());
 
       byId("btnCopy").addEventListener("click", ()=>{
@@ -2416,10 +2321,8 @@
         copyToClipboard(location.href);
       });
 
-      // Start scenario by hash
-      const key = (location.hash || "#A").replace("#","").toUpperCase();
-      const scn = cenarios[key] ? key : "A";
-      renderScenario(scn, {initial:true});
+      // Cenário único (Recomendado)
+      renderScenario("D", {initial:true});
     })();
   </script>
 </body>
